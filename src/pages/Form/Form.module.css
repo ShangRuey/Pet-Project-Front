@@ -1,0 +1,55 @@
+.login-container {
+  background-color: rgba(247, 197, 105, 0.6);
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 10%;
+  box-shadow: 0 0 50px rgba(209, 88, 7, 0.727);
+  min-width: 350px;
+  max-width: 800px;
+  width: auto;
+}
+
+.setForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .login-title {
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  text-align: center;
+  color: #4a2c2a;
+} */
+/* 
+.login-input {
+  font-size: 18px;
+  font-weight: 800;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-width: 200px;
+  max-width: 500px;
+  width: 70%;
+  text-align: center;
+}
+
+.login-submit {
+  background-color: #333;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 200px;
+  max-width: 400px;
+  width: 50%;
+}
+
+.login-submit:hover {
+  background-color: #555;
+} */
