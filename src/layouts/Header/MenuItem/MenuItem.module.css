@@ -1,0 +1,25 @@
+.petShop,
+.friendlyMap,
+.petAdopt,
+.petCommunity,
+.memberCenter,
+.logOut {
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  cursor: pointer;
+  font-size: 25px;
+  color: #4a2c2a;
+}
+.petShop:hover,
+.friendlyMap:hover,
+.petAdopt:hover,
+.petCommunity:hover,
+.memberCenter:hover,
+.logOut:hover {
+  color: #e28b18;
+  background-color: rgba(250, 243, 140, 0.918);
+  box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
+  border-radius: 50%;
+}
