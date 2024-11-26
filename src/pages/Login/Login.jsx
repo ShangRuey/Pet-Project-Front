@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button.jsx";
 import Message from "../../components/Message/Message.jsx";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
+import MainFormContainer from "../../components/MainFormContainer/MainFormContainer.jsx";
 
 export default function Login({ setIsLoggedIn }) {
   const [message, setMessage] = useState("");
@@ -45,41 +46,39 @@ export default function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <div className={styles.centerWrapper}>
-      <div className={styles.loginContainer}>
-        <Form handleSubmit={handleSubmit}>
-          <Title label="會員登入" />
-          <Message message={message} />
-          <Label label="帳號" />
-          <Input
-            name="username"
-            type="text"
-            maxLength="14"
-            minLength="4"
-            pattern="[A-Za-z0-9]+"
-            required
-          />
-          <Label label="密碼" />
-          <Input
-            name="password"
-            type="password"
-            maxLength="16"
-            pattern="[A-Za-z0-9]+"
-            minLength="4"
-            required
-          />
-          <Button label="登入" type="submit" />
-        </Form>
-        <div className={styles.haveAccount}>
-          <p className={styles.updatePassword}>
-            <Link to="/register">註冊</Link>
-          </p>
-          <p className={styles.updatePassword}>
-            <Link to="/update-password">忘記密碼</Link>
-          </p>
-        </div>
+    <MainFormContainer>
+      <Form handleSubmit={handleSubmit}>
+        <Title label="會員登入" />
+        <Message message={message} />
+        <Label label="帳號" />
+        <Input
+          name="username"
+          type="text"
+          maxLength="14"
+          minLength="4"
+          pattern="[A-Za-z0-9]+"
+          required
+        />
+        <Label label="密碼" />
+        <Input
+          name="password"
+          type="password"
+          maxLength="16"
+          pattern="[A-Za-z0-9]+"
+          minLength="4"
+          required
+        />
+        <Button label="登入" type="submit" />
+      </Form>
+      <div className={styles.extensionForm}>
+        <p className={styles.extensionItem}>
+          <Link to="/register">註冊</Link>
+        </p>
+        <p className={styles.extensionItem}>
+          <Link to="/update-password">忘記密碼</Link>
+        </p>
       </div>
-    </div>
+    </MainFormContainer>
   );
 }
 
