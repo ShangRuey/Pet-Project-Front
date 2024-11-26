@@ -2,8 +2,28 @@ import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 import logoImg from "../../assets/index/dog.png";
 import MenuItem from "./MenuItem/MenuItem.jsx";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Header({ isLoggedIn }) {
+export default function Header({ isLoggedIn, setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:5000/logout",
+        {},
+        {
+          withCredentials: true, // 確保 cookie 包含在請求中
+        }
+      );
+      setIsLoggedIn(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   return (
     <header>
       <nav className={styles.navBar}>
@@ -20,6 +40,7 @@ export default function Header({ isLoggedIn }) {
             <MenuItem label="認養相關" itemName="petAdopt" />
             <MenuItem label="狗狗社群" itemName="petCommunity" />
             <MenuItem label="會員中心" itemName="memberCenter" />
+            <MenuItem label="登出" itemName="logOut" onClick={handleLogout} />
           </div>
         </div>
       </nav>
@@ -29,4 +50,5 @@ export default function Header({ isLoggedIn }) {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
