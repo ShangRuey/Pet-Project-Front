@@ -4,7 +4,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "./layouts/Header/Header.jsx";
 import Footer from "./layouts/Footer/Footer.jsx";
 import Main from "./layouts/Main/Main.jsx";
@@ -22,6 +23,24 @@ import UpdatePassword from "./pages/UpdatePassword/UpdatePassword.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/check-auth", {
+          withCredentials: true, // 確保 cookie 包含在請求中
+        });
+
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   return (
     <Router>
