@@ -24,10 +24,18 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
     }
   };
 
+  // 動態導航函數
+  const createNavigationHandler = (path) => () => {
+    navigate(path);
+  };
+
   return (
     <header>
       <nav className={styles.navBar}>
-        <div className={styles.logoContainer}>
+        <div
+          className={styles.logoContainer}
+          onClick={createNavigationHandler("/home")}
+        >
           <p className={styles.logoItem}>
             <img src={logoImg} className={styles.logoItem} alt="logo" />
             BlackDog
@@ -35,11 +43,31 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         </div>
         <div className={isLoggedIn ? styles.functionColumn : styles.menuToggle}>
           <div className={styles.menuItems}>
-            <MenuItem label="用品商店" itemName="petShop" />
-            <MenuItem label="友善地圖" itemName="friendlyMap" />
-            <MenuItem label="認養相關" itemName="petAdopt" />
-            <MenuItem label="狗狗社群" itemName="petCommunity" />
-            <MenuItem label="會員中心" itemName="memberCenter" />
+            <MenuItem
+              label="用品商店"
+              itemName="petShop"
+              onClick={createNavigationHandler("/shop")}
+            />
+            <MenuItem
+              label="友善地圖"
+              itemName="friendlyMap"
+              onClick={createNavigationHandler("/map")}
+            />
+            <MenuItem
+              label="認養相關"
+              itemName="petAdopt"
+              onClick={createNavigationHandler("/adopt")}
+            />
+            <MenuItem
+              label="狗狗社群"
+              itemName="petCommunity"
+              onClick={createNavigationHandler("/community")}
+            />
+            <MenuItem
+              label="會員中心"
+              itemName="memberCenter"
+              onClick={createNavigationHandler("/member")}
+            />
             <MenuItem label="登出" itemName="logOut" onClick={handleLogout} />
           </div>
         </div>
