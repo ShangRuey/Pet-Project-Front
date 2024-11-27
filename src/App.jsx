@@ -57,7 +57,10 @@ function App() {
               )
             }
           />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={isLoggedIn ? <Navigate to="/home" /> : <Register />}
+          />
           <Route
             path="/home"
             element={isLoggedIn ? <Home /> : <Navigate to="/" />}
@@ -90,7 +93,10 @@ function App() {
             path="/adopt"
             element={isLoggedIn ? <Adopt /> : <Navigate to="/" />}
           />
-          <Route path="/update-password" element={<UpdatePassword />} />
+          <Route
+            path="/update-password"
+            element={<UpdatePassword setIsLoggedIn={setIsLoggedIn} />}
+          />
         </Routes>
       </Main>
       <Footer />
