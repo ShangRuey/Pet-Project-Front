@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Cookies from "js-cookie";
 import Form from "../Form/Form.jsx";
 import Title from "../../components/Title/Title.jsx";
 import Label from "../../components/Label/Label.jsx";
@@ -30,12 +31,20 @@ export default function Login({ setIsLoggedIn }) {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true, // 確保 cookie 包含在請求中
+        withCredentials: true,
       });
 
       if (response.status === 200) {
         setIsLoggedIn(true);
-        navigate("/home"); // 登入成功後跳轉到 /home
+
+        // 設置無到期時間的 token cookie
+        Cookies.set("token", response.data.token);
+
+        // 確認設置的 cookie
+        console.log("Cookies after login:", Cookies.get());
+        console.log("Token cookie:", Cookies.get("token"));
+
+        navigate("/home");
       } else {
         setMessage(response.data.message);
       }
