@@ -6,7 +6,7 @@ import adoptImg from "../../assets/index/adopt.png";
 import communityImg from "../../assets/index/community.png";
 import mapImg from "../../assets/index/map.png";
 import shopImg from "../../assets/index/shop.png";
-import ImageMapItem from "./ImgaeMapItems/ImageMapItem.jsx";
+import ImageMapItems from "./ImgaeMapItems/ImageMapItems.jsx";
 import MapRwdImg from "./ImageMapRwdItems/MapRwdImg.jsx";
 import MapRwdDes from "./ImageMapRwdItems/MapRwdDes.jsx";
 import ImageMapRwdItem from "./ImageMapRwdItems/ImageMapRwdItem.jsx";
@@ -65,7 +65,7 @@ export default function Home() {
     <>
       <div className={styles.imageMapContainer}>
         {imageMapItems.map((item) => (
-          <ImageMapItem
+          <ImageMapItems
             key={item.alt}
             src={item.src}
             css={item.css}
