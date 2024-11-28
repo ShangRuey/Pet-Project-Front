@@ -1,0 +1,23 @@
+.imageMapContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.imageMapRwd {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .imageMapContainer {
+    display: none;
+  }
+  .imageMapRwd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

@@ -1,0 +1,17 @@
+@media screen and (max-width: 1024px) {
+  .mapRwdDes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
+
+  .mapRwdLabel {
+    font-family: "Noto Sans TC", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 35px;
+    color: #ca9a17ab;
+  }
+}

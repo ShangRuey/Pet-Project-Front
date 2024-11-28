@@ -23,3 +23,13 @@
   box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
   border-radius: 50%;
 }
+
+@media screen and (max-width: 1024px) {
+  .petShop,
+  .friendlyMap,
+  .petAdopt,
+  .petCommunity,
+  .memberCenter {
+    display: none;
+  }
+}

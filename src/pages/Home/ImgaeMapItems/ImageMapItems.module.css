@@ -1,0 +1,41 @@
+.imageMapItem {
+  position: absolute;
+  width: 20%;
+  cursor: pointer;
+}
+
+.imageDog {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  max-height: 90%;
+}
+.imageAdopt {
+  height: 40%;
+  bottom: 5%;
+  left: 16%;
+}
+.imageMap {
+  height: 40%;
+  top: 5%;
+  right: 16%;
+}
+.imageCommunity {
+  height: 40%;
+  bottom: 5%;
+  right: 16%;
+}
+.imageShop {
+  height: 40%;
+  top: 5%;
+  left: 16%;
+}
+.imageDog:hover,
+.imageShop:hover,
+.imageMap:hover,
+.imageAdopt:hover,
+.imageCommunity:hover {
+  background-color: rgba(255, 209, 139, 0.318);
+  box-shadow: 0 0 50px rgba(255, 209, 139, 0.718);
+}
