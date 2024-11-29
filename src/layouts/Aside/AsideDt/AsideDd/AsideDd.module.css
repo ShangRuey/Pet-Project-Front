@@ -1,0 +1,7 @@
+.active {
+  color: rgb(255, 172, 172);
+  font-weight: bold;
+}
+.ddSpan:hover {
+  color: rgb(174, 174, 174);
+}

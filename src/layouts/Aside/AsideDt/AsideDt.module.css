@@ -1,0 +1,10 @@
+.active {
+  color: rgb(255, 172, 172);
+  font-weight: bold;
+}
+.asideDt {
+  margin: 5px;
+}
+.dtSpan:hover {
+  color: rgb(174, 174, 174);
+}

@@ -1,0 +1,19 @@
+.contentAside {
+  height: 100%;
+  width: 20%;
+  padding: 0 10px 0 15px;
+  display: flex;
+  flex-direction: column;
+  background: #82ffd629;
+  border-right: 5px solid #ff730040;
+}
+.asideDl {
+  width: fit-content;
+  margin: 10px 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 20px;
+  color: #4a2c2a;
+}
