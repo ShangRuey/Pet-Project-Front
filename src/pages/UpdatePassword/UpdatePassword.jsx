@@ -4,7 +4,7 @@ import Title from "../../components/Title/Title";
 import Label from "../../components/Label/Label";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./UpdatePassword.module.css";
 import Input from "../../components/Input/Input";
@@ -15,12 +15,36 @@ import PropTypes from "prop-types";
 export default function UpdatePassword({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedInState] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      // 用戶已登入，從後端獲取用戶名
+      axios
+        .get("http://localhost:5000/member-data", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setUsername(response.data.username);
+            setIsLoggedInState(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching member data:", error);
+        });
+    }
+  }, []);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const username = formData.get("username");
     const phone = formData.get("phone");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
@@ -67,6 +91,10 @@ export default function UpdatePassword({ setIsLoggedIn }) {
     navigate(-1); // 返回上一頁
   }
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
   return (
     <MainFormContainer>
       <Form handleSubmit={handleUpdate}>
@@ -81,6 +109,9 @@ export default function UpdatePassword({ setIsLoggedIn }) {
           pattern="[A-Za-z0-9]+"
           placeholder="請輸入"
           required
+          value={username}
+          onChange={handleUsernameChange} // 添加 onChange handler
+          readOnly={isLoggedIn} // 當用戶已登入時設置為只讀
         />
         <Label label="手機"></Label>
         <Input
