@@ -23,6 +23,7 @@ import UpdatePassword from "./pages/UpdatePassword/UpdatePassword.jsx";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -36,11 +37,17 @@ function App() {
         }
       } catch (error) {
         console.error("Error:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     checkAuth();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // 可以替換為更漂亮的加載指示器
+  }
 
   return (
     <Router>
@@ -79,7 +86,13 @@ function App() {
           />
           <Route
             path="/member"
-            element={isLoggedIn ? <Member /> : <Navigate to="/" />}
+            element={
+              isLoggedIn ? (
+                <Member setIsLoggedIn={setIsLoggedIn} />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="/map"
