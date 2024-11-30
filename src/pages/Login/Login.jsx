@@ -12,9 +12,11 @@ import Message from "../../components/Message/Message.jsx";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import MainFormContainer from "../../components/MainFormContainer/MainFormContainer.jsx";
+import { useUser } from "../../contexts/UserContext";
 
 export default function Login({ setIsLoggedIn }) {
   const [message, setMessage] = useState("");
+  const { fetchUserData } = useUser();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -43,6 +45,9 @@ export default function Login({ setIsLoggedIn }) {
         // 確認設置的 cookie
         console.log("Cookies after login:", Cookies.get());
         console.log("Token cookie:", Cookies.get("token"));
+
+        // 獲取新用戶資料
+        await fetchUserData();
 
         navigate("/home");
       } else {
