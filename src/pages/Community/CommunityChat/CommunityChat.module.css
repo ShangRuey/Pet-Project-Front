@@ -1,0 +1,120 @@
+.chatContainer {
+  width: 100%;
+  height: 95%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 10px solid #00000091;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.chatContent {
+  display: flex;
+  flex-direction: column-reverse; /* 確保訊息從底部開始顯示 */
+  width: 100%;
+  max-height: 350px;
+  flex: 1;
+  background: #ffe3543d;
+  border-radius: 5px;
+  overflow-y: auto; /* 添加滾動條 */
+}
+.chatUser {
+  display: flex;
+  border: 3px solid #aeaeae;
+  border-radius: 8px;
+  margin: 10px 5px;
+}
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  width: 20%;
+  background: #8b98ffab;
+}
+.userImg {
+  width: 30%;
+  height: 100%;
+  border-radius: 50%;
+}
+.userName {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.userName,
+.userContainer {
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 16px;
+  color: #4a2c2a;
+}
+.userContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  background: #b4ffaba8;
+}
+.userContent {
+  margin-left: 10px;
+  word-wrap: break-word; /* 確保內容自動換行 */
+  width: 60%; /* 設置最大寬度，確保不會擠壓到時間戳 */
+}
+.timestamp {
+  width: 30%;
+  margin: 0px 10px;
+  text-align: end;
+}
+.chatPanel {
+  width: 100%;
+  height: 20%;
+  border: 3px solid #00000075;
+  border-radius: 8px;
+  background: #2e2e2e3b;
+  display: flex;
+}
+.chatInput {
+  height: 100%;
+  width: 90%;
+  background: rgb(162 255 252 / 24%);
+  border-radius: 8px;
+  resize: none;
+  overflow: auto;
+  outline: none; /* 移除輸入時的外框 */
+}
+.chatBtn {
+  height: 100%;
+  width: 10%;
+  border-radius: 8px;
+  opacity: 0.5;
+}
+.chatInput,
+.chatBtn {
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 18px;
+  color: #4a2c2a;
+}
+.chatBtn:hover {
+  opacity: 1;
+} /* WebKit 滾輪設置 */
+.chatContent::-webkit-scrollbar {
+  width: 8px;
+}
+.chatContent::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+.chatContent::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+.chatContent::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
