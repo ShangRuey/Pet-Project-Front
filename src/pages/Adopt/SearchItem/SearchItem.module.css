@@ -1,0 +1,23 @@
+.searchItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poetsen One";
+  font-weight: bold;
+  flex-wrap: wrap;
+  width: 45%;
+  height: 20%;
+  font-size: 20px;
+  margin: 10px 0;
+}
+.searchSelect {
+  width: auto;
+  padding: 5px 10px;
+  margin: 0 15px;
+  border-radius: 10px;
+  font-family: "Poetsen One";
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  background: #ffffff6e;
+}
