@@ -21,7 +21,7 @@ export default function Register() {
     const data = {
       username: formData.get("username"),
       password: formData.get("password"),
-      fullName: formData.get("fullName"),
+      fullname: formData.get("fullname"),
       email: formData.get("email"),
       phone: formData.get("phone"),
       address: formData.get("address"),
@@ -86,7 +86,7 @@ export default function Register() {
         />
         <Label label="姓名" />
         <Input
-          name="fullName"
+          name="fullname"
           type="text"
           maxLength="6"
           pattern="^[\u4e00-\u9fa5A-Za-z]+$"
