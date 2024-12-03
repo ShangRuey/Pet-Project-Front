@@ -1,22 +1,25 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   background-image: url("../src/assets/index/background.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh; /* 保持100vh */
 }
+
 #root {
   margin: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100%; /* 使用百分比，以確保它填滿父容器 */
 }
+
 header {
   flex: 0 0 auto;
   width: 100%;
@@ -29,17 +32,19 @@ header {
   z-index: 100;
   color: #4a2c2a;
 }
+
 main {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   width: 100%;
-  overflow: auto;
+  overflow-y: auto; /* 添加垂直滾動，確保內容超出時可以滾動 */
 }
+
 footer {
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   max-height: 96px;
   min-height: 60px;
