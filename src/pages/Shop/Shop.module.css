@@ -1,0 +1,15 @@
+.cartBar {
+  margin: 5px 0;
+  width: 100%;
+  text-align: center;
+}
+.cartAmount {
+  width: 50px;
+  text-align: center;
+}
+.cartButton {
+  padding: 5px 10px;
+}
+.addCart {
+  width: 50%;
+}

@@ -1,0 +1,84 @@
+.imgWall {
+  width: 95%;
+  height: 50%;
+  position: relative;
+  margin: 10px 0;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.imgButton {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.imgWall:hover .imgButton {
+  display: block;
+}
+.leftButton {
+  left: 10px;
+}
+.rightButton {
+  right: 10px;
+}
+.productWall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  padding-bottom: 50px;
+}
+.productItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.productImg {
+  width: 100%;
+}
+.productName {
+  width: 100%;
+  margin: 10px 0;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: #f4a261;
+  text-align: center;
+}
+.productPrice {
+  margin: 5px 0;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: #f4a261;
+  text-align: center;
+}
+.cartBar {
+  margin: 5px 0;
+  width: 100%;
+  text-align: center;
+}
+.cartAmount {
+  width: 50px;
+  text-align: center;
+}
+.cartButton {
+  padding: 5px 10px;
+}
+.addCart {
+  width: 50%;
+}

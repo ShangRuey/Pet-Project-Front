@@ -7,4 +7,5 @@
 }
 .dtSpan:hover {
   color: rgb(174, 174, 174);
+  cursor: pointer;
 }
