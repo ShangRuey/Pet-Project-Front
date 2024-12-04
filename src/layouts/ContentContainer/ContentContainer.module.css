@@ -2,5 +2,7 @@
   height: 100%;
   width: 80%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
 }
