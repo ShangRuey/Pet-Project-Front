@@ -5,8 +5,10 @@
   align-items: center;
   border: 10px solid #e0e4e978;
   width: 20%;
+  min-width: 200px;
+  max-height: 320px;
   margin: 10px;
-  height: 40%;
+  height: 50%;
   background: #e0e4e96e;
   font-family: "Poetsen One";
   font-weight: bold;
