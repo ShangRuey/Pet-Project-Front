@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Adopt.module.css";
 import dogImg from "../../assets/index/ques.jpg";
 import SearchItem from "./SearchItem/SearchItem";
@@ -84,7 +85,15 @@ const bodytypeToChineseMap = {
 
 export default function Adopt() {
   const [dataArray, setDataArray] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchConditions, setSearchConditions] = useState({
+    area: "",
+    shelter: "",
+    sex: "",
+    age: "",
+  });
+
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -92,6 +101,7 @@ export default function Adopt() {
       try {
         const response = await axios.get(dataUrl);
         setDataArray(response.data.Data);
+        setFilteredData(response.data.Data); // 初始顯示全部資料
 
         // 預載所有圖片
         response.data.Data.forEach((item) => {
@@ -111,16 +121,14 @@ export default function Adopt() {
   const shelterOptions = Object.entries(shelterIdToChineseMap);
   const sexOptions = Object.entries(sexIdToChineseMap);
   const ageOptions = Object.entries(ageIdToChinese);
-
   // 計算當前頁的資料
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = dataArray.slice(indexOfFirstItem, indexOfLastItem);
-
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   // 分頁控制
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
-      Math.min(prevPage + 1, Math.ceil(dataArray.length / itemsPerPage))
+      Math.min(prevPage + 1, Math.ceil(filteredData.length / itemsPerPage))
     );
   };
 
@@ -128,15 +136,67 @@ export default function Adopt() {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
+  // 更新搜尋條件
+  const handleSearchChange = (label, value) => {
+    setSearchConditions((prevConditions) => ({
+      ...prevConditions,
+      [label]: value,
+    }));
+  };
+
+  // 點擊搜尋按鈕時進行篩選
+  const handleSearch = () => {
+    const filtered = dataArray.filter((item) => {
+      return (
+        (searchConditions.area === "" ||
+          item.animal_area_pkid == searchConditions.area) &&
+        (searchConditions.shelter === "" ||
+          item.animal_shelter_pkid == searchConditions.shelter) &&
+        (searchConditions.sex === "" ||
+          item.animal_sex === searchConditions.sex) &&
+        (searchConditions.age === "" ||
+          item.animal_age === searchConditions.age)
+      );
+    });
+    setCurrentPage(1); // 搜尋後重置到第一頁
+    setFilteredData(filtered);
+  };
+
+  const navigate = useNavigate();
+
+  // 處理 ContentItem 點擊事件
+  const handleContentItemClick = (itemData) => {
+    navigate(`/detail/${itemData.animal_id}`, {
+      state: { item: itemData, type: "adopt" },
+    });
+  };
   return (
     <div className={styles.container}>
       <div className={styles.adoptContainer}>
         <div className={styles.searchContainer}>
-          <SearchItem label="所屬縣市" options={areaOptions} />
-          <SearchItem label="收容所" options={shelterOptions} />
-          <SearchItem label="性別" options={sexOptions} />
-          <SearchItem label="年齡" options={ageOptions} />
-          <button className={styles.searchBtn}>查詢</button>
+          <SearchItem
+            label="所屬縣市"
+            options={areaOptions}
+            onChange={(value) => handleSearchChange("area", value)}
+          />
+          <SearchItem
+            label="收容所"
+            options={shelterOptions}
+            onChange={(value) => handleSearchChange("shelter", value)}
+          />
+          <SearchItem
+            label="性別"
+            options={sexOptions}
+            onChange={(value) => handleSearchChange("sex", value)}
+          />
+          <SearchItem
+            label="年齡"
+            options={ageOptions}
+            onChange={(value) => handleSearchChange("age", value)}
+          />
+          <button className={styles.searchBtn} onClick={handleSearch}>
+            查詢
+          </button>
         </div>
         <div className={styles.contentContainer}>
           {currentItems.map((item, index) => (
@@ -146,6 +206,8 @@ export default function Adopt() {
               animalSex={sexIdToChineseMap[item.animal_sex]}
               bodyType={bodytypeToChineseMap[item.animal_bodytype]}
               shelterName={shelterIdToChineseMap[item.animal_shelter_pkid]}
+              itemData={item} // 傳遞完整資料
+              onClick={handleContentItemClick} // 點擊事件處理
             />
           ))}
           <div className={styles.contentPage}>
