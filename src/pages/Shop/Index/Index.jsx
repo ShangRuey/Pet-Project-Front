@@ -102,7 +102,7 @@ export default function Index({ filter, onImageClick }) {
 
   const handleProductClick = (product) => {
     navigate(`/detail/${product.id}`, {
-      state: { product, amount: amounts[product.id] },
+      state: { item: product, type: "product", amount: amounts[product.id] },
     });
   };
 
