@@ -1,10 +1,12 @@
 import { useCart } from "../../contexts/CartContext";
+import { useUser } from "../../contexts/UserContext";
 import styles from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateCartItem, clearCart } = useCart();
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const totalAmount = cartItems.reduce(

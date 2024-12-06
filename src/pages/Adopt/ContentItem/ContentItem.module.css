@@ -1,0 +1,29 @@
+.contentItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 10px solid #e0e4e978;
+  width: 20%;
+  min-width: 200px;
+  max-height: 320px;
+  margin: 10px;
+  height: 50%;
+  background: #e0e4e96e;
+  font-family: "Poetsen One";
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+.contentImg {
+  width: 100%;
+  height: 60%; /* 固定高度 */
+  overflow: hidden; /* 防止圖片溢出 */
+  object-fit: contain;
+}
+.contentDog {
+  width: 100%;
+  text-align: center;
+  padding: 3px 0;
+  box-sizing: border-box;
+}
