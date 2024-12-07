@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: space-evenly;
     height: 20%;
+    min-height: 80px;
     width: 100%;
-    max-height: 20%;
     border: 3px solid #27ffe51a;
     box-sizing: border-box;
     background: #d9ffd64f;
