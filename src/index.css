@@ -2,6 +2,21 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 14px;
+}
+*::-webkit-scrollbar-track {
+  background: rgba(234, 181, 90, 0.727);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #6b2e08;
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #855f37b8;
+}
+
 body {
   margin: 0;
   background-image: url("../src/assets/index/background.jpg");
@@ -18,6 +33,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%; /* 使用百分比，以確保它填滿父容器 */
+  overflow-x: hidden;
 }
 
 header {
@@ -37,6 +53,7 @@ main {
   flex: 1 1 auto;
   width: 100%;
   overflow-y: auto; /* 添加垂直滾動，確保內容超出時可以滾動 */
+  overflow-x: hidden;
 }
 
 footer {
@@ -51,4 +68,10 @@ footer {
   background-color: #333;
   color: #fff8f1;
   z-index: 100;
+}
+
+header,
+main,
+footer {
+  min-width: 336px;
 }
