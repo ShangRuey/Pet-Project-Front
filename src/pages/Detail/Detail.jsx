@@ -139,7 +139,7 @@ export default function Detail() {
       }
     }
   };
-
+  console.log(item);
   return (
     <div className={styles.detailContainer}>
       <div className={styles.detailLeft}>
@@ -147,25 +147,86 @@ export default function Detail() {
           className={styles.leftImg}
           src={type === "adopt" ? item.album_file : ques}
           alt={item.name}
+          loading="lazy"
         />
-        <button
-          className={styles.backBtn}
-          onClick={() => window.history.back()}
-        >
-          返回
-        </button>
       </div>
       <div className={styles.detailRight}>
-        <h1>{item.name}</h1>
         {type === "adopt" ? (
           <>
-            <p>動物年齡: {ageIdToChinese[item.animal_age]}</p>
-            <p>動物性別: {sexIdToChineseMap[item.animal_sex]}</p>
-            <p>收容所: {shelterIdToChineseMap[item.animal_shelter_pkid]}</p>
-            <p>所屬縣市: {areaIdToChineseMap[item.animal_area_pkid]}</p>
-            <button onClick={handleAdoptClick}>
-              {adopted ? "已申請認養" : "我要認養"}
-            </button>
+            <div className={styles.rightItems}>
+              <p className={styles.rightP}>
+                <span>收容編號:</span>
+                <span className={styles.rightSpan}>
+                  {item.animal_id || "未知"}{" "}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                年齡:
+                <span className={styles.rightSpan}>
+                  {ageIdToChinese[item.animal_age] || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                性別:
+                <span className={styles.rightSpan}>
+                  {sexIdToChineseMap[item.animal_sex] || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                體型:
+                <span className={styles.rightSpan}>
+                  {bodytypeToChineseMap[item.animal_bodytype] || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                毛色:
+                <span className={styles.rightSpan}>
+                  {item.animal_colour || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                <span>是否施打狂犬病疫苗:</span>
+                <span className={styles.rightSpan}>
+                  {item.animal_bacterin || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                收容所:{" "}
+                <span className={styles.rightSpan}>
+                  {shelterIdToChineseMap[item.animal_shelter_pkid] || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                所屬縣市:
+                <span className={styles.rightSpan}>
+                  {areaIdToChineseMap[item.animal_area_pkid] || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                地址:
+                <span className={styles.rightSpan}>
+                  {item.shelter_address || "未知"}
+                </span>
+              </p>
+              <p className={styles.rightP}>
+                連絡電話:
+                <span className={styles.rightSpan}>
+                  {item.shelter_tel || "未知"}
+                </span>
+              </p>
+            </div>
+
+            <div className={styles.btnDiv}>
+              <button className={styles.checkBtn} onClick={handleAdoptClick}>
+                {adopted ? "已申請認養" : "我要認養"}
+              </button>
+              <button
+                className={styles.backBtn}
+                onClick={() => window.history.back()}
+              >
+                返回
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -191,6 +252,12 @@ export default function Detail() {
               </button>
             </div>
             <button onClick={handleAddToCart}>加入購物車</button>
+            <button
+              className={styles.backBtn}
+              onClick={() => window.history.back()}
+            >
+              返回
+            </button>
           </>
         )}
       </div>
