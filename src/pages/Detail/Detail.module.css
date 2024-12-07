@@ -106,4 +106,7 @@
   .rightSpan {
     margin-left: 0;
   }
+  .btnDiv {
+    flex-direction: column;
+  }
 }
