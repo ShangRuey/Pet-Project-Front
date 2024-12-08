@@ -1,8 +1,13 @@
 .active {
-  color: rgb(255, 172, 172);
+  color: #e28b18;
+  background-color: rgba(250, 243, 140, 0.918);
+  box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
   font-weight: bold;
 }
 .ddSpan:hover {
-  color: rgb(174, 174, 174);
+  color: #e28b18;
+  background-color: rgba(250, 243, 140, 0.918);
+  box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
+  border-radius: 50%;
   cursor: pointer;
 }
