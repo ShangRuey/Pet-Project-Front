@@ -3,3 +3,108 @@
   width: 100%;
   display: flex;
 }
+
+.rwdAsideBtn {
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  z-index: 998;
+}
+
+.openAsideBtn,
+.testAside {
+  display: none;
+}
+
+/*--------------------------------*/
+
+@media screen and (max-width: 920px) {
+  .openAsideBtn {
+    display: block;
+  }
+  .testAside {
+    display: flex;
+  }
+  .mainContainer {
+    position: relative;
+    justify-content: center;
+  }
+  .openAsideBtn {
+    position: absolute;
+    width: 25%;
+    min-width: 200px;
+    cursor: pointer;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 25px;
+    border-radius: 10px;
+    background: #93bdc4f0;
+    opacity: 0.7;
+    z-index: 1000;
+  }
+  .testAside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-width: 20%;
+    max-width: 80%;
+    height: 95%;
+    background: #b0cbc1;
+    border: 3px solid #5a5a5a;
+    border-radius: 10px;
+    z-index: 1000;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  .open {
+    transform: translateY(0); /* 向下滑動至正常位置 */
+    opacity: 1; /* 顯示 */
+  }
+
+  .testAsideItem {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    cursor: pointer;
+    font-size: 25px;
+    color: #855e34fc;
+    border: 2px solid #855f37b8;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .closeAsideBtn {
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    font-family: "Noto Sans TC", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 25px;
+    border-radius: 10px;
+    background: #eec557f0;
+    opacity: 0.7;
+    cursor: pointer;
+  }
+  .testAsideItem:hover {
+    color: #e28b18;
+    background-color: rgba(250, 243, 140, 0.918);
+    box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
+  }
+  .openAsideBtn:hover,
+  .closeAsideBtn:hover {
+    opacity: 1;
+  }
+}
