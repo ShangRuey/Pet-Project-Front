@@ -10,12 +10,17 @@ export default function Community() {
   const { user, loading } = useUser();
   const [activeItem, setActiveItem] = useState("聊天室");
   const [activeContent, setActiveContent] = useState(null);
+  const [isRwdAside, setIsRwdAside] = useState(false);
 
   useEffect(() => {
     if (!loading && user) {
       setActiveContent(<CommunityChat user={user} />);
     }
   }, [loading, user]);
+
+  function handleRwdAside() {
+    setIsRwdAside((prevIs) => !prevIs);
+  }
 
   const handleItemClick = (label, component) => {
     setActiveItem(label);
@@ -28,6 +33,22 @@ export default function Community() {
 
   return (
     <div className={styles.mainContainer}>
+      <button className={styles.openAsideBtn} onClick={handleRwdAside}>
+        ▼
+      </button>
+      <aside className={`${styles.testAside} ${isRwdAside ? styles.open : ""}`}>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick("聊天室", <CommunityChat user={user} />)
+          }
+        >
+          聊天室
+        </div>
+        <button className={styles.closeAsideBtn} onClick={handleRwdAside}>
+          ▲
+        </button>
+      </aside>
       <Aside>
         <AsideDt
           label="聊天室"
