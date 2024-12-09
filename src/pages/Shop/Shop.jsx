@@ -7,8 +7,12 @@ import ContentContainer from "../../layouts/ContentContainer/ContentContainer.js
 import Index from "./Index/Index.jsx";
 import Cart from "../Cart/Cart.jsx";
 import { useCart } from "../../contexts/CartContext";
+import styles from "./Shop.module.css";
 
 export default function Shop() {
+  const [isRwdAside, setIsRwdAside] = useState(false);
+  const [activeItem, setActiveItem] = useState("首頁");
+
   const handleImageClick = (type) => {
     if (type === "瑞威") {
       handleItemClick(
@@ -25,8 +29,6 @@ export default function Shop() {
       );
     }
   };
-
-  const [activeItem, setActiveItem] = useState("首頁");
   const [activeContent, setActiveContent] = useState(
     <Index filter={{}} onImageClick={handleImageClick} />
   );
@@ -36,10 +38,83 @@ export default function Shop() {
     setActiveContent(component);
   };
 
+  function handleRwdAside() {
+    setIsRwdAside((prevIs) => !prevIs);
+  }
+
   const { cartItems } = useCart();
 
   return (
     <MainContainer>
+      <button className={styles.openAsideBtn} onClick={handleRwdAside}>
+        ▼
+      </button>
+      <aside className={`${styles.testAside} ${isRwdAside ? styles.open : ""}`}>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "首頁",
+              <Index filter={{}} onImageClick={handleImageClick} />
+            )
+          }
+        >
+          首頁
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "飼料",
+              <Index
+                filter={{ brandId: "1" }}
+                onImageClick={handleImageClick}
+              />
+            )
+          }
+        >
+          飼料
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "瑞威",
+              <Index
+                filter={{ brandId: "1", category: "飼料" }}
+                onImageClick={handleImageClick}
+              />
+            )
+          }
+        >
+          瑞威
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "玩具",
+              <Index
+                filter={{ category: "玩具" }}
+                onImageClick={handleImageClick}
+              />
+            )
+          }
+        >
+          玩具
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick("購物車", <Cart cartItems={cartItems} />)
+          }
+        >
+          購物車
+        </div>
+        <button className={styles.closeAsideBtn} onClick={handleRwdAside}>
+          ▲
+        </button>
+      </aside>
       <Aside>
         <AsideDt
           label="首頁"

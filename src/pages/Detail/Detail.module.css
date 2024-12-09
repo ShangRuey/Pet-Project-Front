@@ -1,7 +1,7 @@
 .detailContainer {
   width: 100%;
-  height: 100%;
   display: flex;
+  min-height: 100%;
 }
 .detailLeft {
   display: flex;
@@ -12,27 +12,6 @@
   background: #ffffff3d;
   align-items: center;
 }
-.backBtn {
-  margin: 5px 0;
-  font-family: "Noto Sans TC", sans-serif;
-  font-weight: 900;
-  font-size: 25px;
-  text-align: center;
-  color: #989ea3;
-  cursor: pointer;
-  width: auto;
-  border-radius: 5px;
-}
-.backBtn:hover {
-  background: #6ebdffc7;
-}
-
-.leftImg {
-  width: 80%;
-  height: 70%;
-  border-radius: 5px;
-  object-fit: contain;
-}
 .detailRight {
   width: 60%;
   padding: 20px;
@@ -41,4 +20,147 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+.leftImg {
+  width: 80%;
+  height: 70%;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.rightItems {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rightP {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  color: #812f2a;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rightSpan {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: #855f37b8;
+  word-wrap: break-word;
+}
+.btnDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  min-width: 250px;
+}
+.checkBtn {
+  margin: 5px 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  color: #812f2a;
+  cursor: pointer;
+  width: auto;
+  border-radius: 5px;
+}
+.backBtn {
+  margin: 5px 0;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  color: #855f37b8;
+  cursor: pointer;
+  width: auto;
+  border-radius: 5px;
+}
+.checkBtn:hover,
+.backBtn:hover {
+  color: #e28b18;
+  background-color: rgba(250, 243, 140, 0.918);
+  box-shadow: 0 0 50px rgba(226, 211, 2, 0.918);
+}
+
+.rightShop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.rightShopItem {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  text-align: center;
+  color: #812f2a;
+}
+.rightShopSpan {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  text-align: center;
+  color: #855f37b8;
+  margin-left: 10px;
+}
+.rightCart {
+  display: flex;
+  margin-bottom: 25px;
+}
+.cartButton {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  color: #855f37b8;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+.cartAmount {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  color: #855f37b8;
+  max-width: 150px;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 920px) {
+  .detailContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .detailLeft {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+  .leftImg {
+    max-width: 330px;
+  }
+  .detailRight {
+    width: 100%;
+  }
+  .btnDiv {
+    min-width: 205px;
+  }
+
+  .rightP {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rightSpan {
+    margin-left: 0;
+  }
+  .btnDiv {
+    flex-direction: column;
+  }
+
+  .cartButton {
+    margin: 0 5px;
+    cursor: pointer;
+  }
 }

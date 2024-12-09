@@ -11,14 +11,51 @@ import PropTypes from "prop-types";
 export default function Member({ setIsLoggedIn }) {
   const [activeItem, setActiveItem] = useState("修改會員資料");
   const [activeContent, setActiveContent] = useState(<UpdateMember />);
+  const [isRwdAside, setIsRwdAside] = useState(false);
 
   const handleItemClick = (label, component) => {
     setActiveItem(label);
     setActiveContent(component);
   };
 
+  function handleRwdAside() {
+    setIsRwdAside((prevIs) => !prevIs);
+  }
+
   return (
     <div className={styles.mainContainer}>
+      <button className={styles.openAsideBtn} onClick={handleRwdAside}>
+        ▼
+      </button>
+      <aside className={`${styles.testAside} ${isRwdAside ? styles.open : ""}`}>
+        <div
+          className={styles.testAsideItem}
+          onClick={() => handleItemClick("修改會員資料", <UpdateMember />)}
+        >
+          修改會員資料
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "更改密碼",
+              <UpdatePassword setIsLoggedIn={setIsLoggedIn} />
+            )
+          }
+        >
+          更改密碼
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() => handleItemClick("細項", <div>細項</div>)}
+        >
+          細項
+        </div>
+        <button className={styles.closeAsideBtn} onClick={handleRwdAside}>
+          ▲
+        </button>
+      </aside>
+
       <Aside>
         <AsideDt
           label="修改會員資料"

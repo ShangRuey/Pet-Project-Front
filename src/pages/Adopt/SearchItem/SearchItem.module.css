@@ -6,18 +6,26 @@
   font-weight: bold;
   flex-wrap: wrap;
   width: 45%;
+  min-width: 415px;
   height: 20%;
   font-size: 20px;
   margin: 10px 0;
 }
 .searchSelect {
   width: auto;
+  max-width: fit-content;
   padding: 5px 10px;
   margin: 0 15px;
   border-radius: 10px;
   font-family: "Poetsen One";
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   background: #ffffff6e;
+}
+
+@media screen and (max-width: 920px) {
+  .searchItem {
+    flex-direction: column;
+  }
 }

@@ -10,7 +10,7 @@
   font-style: normal;
   cursor: pointer;
   font-size: 25px;
-  color: #4a2c2a;
+  color: #855f37b8;
 }
 .petShop:hover,
 .friendlyMap:hover,
@@ -24,7 +24,7 @@
   border-radius: 50%;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 920px) {
   .petShop,
   .friendlyMap,
   .petAdopt,

@@ -3,3 +3,10 @@
   width: 100%;
   display: flex;
 }
+
+@media screen and (max-width: 920px) {
+  .mainContainer {
+    position: relative;
+    justify-content: center;
+  }
+}

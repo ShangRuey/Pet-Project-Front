@@ -37,5 +37,6 @@
 .imageAdopt:hover,
 .imageCommunity:hover {
   background-color: rgba(255, 209, 139, 0.318);
-  box-shadow: 0 0 50px rgba(255, 209, 139, 0.718);
+  box-shadow: 0 0 150px rgba(255, 209, 139, 0.718);
+  border-radius: 10px;
 }

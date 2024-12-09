@@ -6,3 +6,10 @@
   overflow: auto;
   align-items: center;
 }
+
+@media screen and (max-width: 920px) {
+  .contentContainer {
+    width: 100%;
+    position: absolute;
+  }
+}

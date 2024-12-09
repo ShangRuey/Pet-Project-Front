@@ -49,6 +49,7 @@
 }
 .productImg {
   width: 100%;
+  object-fit: contain;
 }
 .productName {
   width: 100%;
@@ -56,7 +57,7 @@
   font-family: "Poetsen One", sans-serif;
   font-weight: bold;
   font-size: 25px;
-  color: #f4a261;
+  color: #812f2ae3;
   text-align: center;
 }
 .productPrice {
@@ -64,21 +65,51 @@
   font-family: "Poetsen One", sans-serif;
   font-weight: bold;
   font-size: 18px;
-  color: #f4a261;
+  color: #855f37b8;
   text-align: center;
 }
 .cartBar {
-  margin: 5px 0;
   width: 100%;
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0 15px;
 }
 .cartAmount {
-  width: 50px;
+  width: 40%;
   text-align: center;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
 }
 .cartButton {
-  padding: 5px 10px;
+  width: 20%;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
 }
 .addCart {
-  width: 50%;
+  width: 90%;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 920px) {
+  .imageWall {
+    padding: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .productItem {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .productItem {
+    width: 50%;
+  }
 }
