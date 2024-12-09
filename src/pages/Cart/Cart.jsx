@@ -3,6 +3,7 @@ import { useUser } from "../../contexts/UserContext";
 import styles from "./Cart.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ques from "../../assets/index/ques.jpg";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateCartItem, clearCart } = useCart();
@@ -52,9 +53,9 @@ export default function Cart() {
       <div className={styles.cartProduct}>
         <div className={styles.cartBar}>
           <div className={styles.cartBarItem}>商品</div>
-          <div className={styles.cartBarItem}>商品數量</div>
-          <div className={styles.cartBarItem}>商品單價</div>
-          <div className={styles.cartBarItem}>商品總計</div>
+          <div className={styles.cartBarItem}>數量</div>
+          <div className={styles.cartBarItem}>單價</div>
+          <div className={styles.cartBarItem}>總計</div>
         </div>
         <div className={styles.cartItems}>
           {cartItems.map((item) => (
@@ -64,11 +65,7 @@ export default function Cart() {
                 onClick={() => handleNavigateToDetail(item)}
                 style={{ cursor: "pointer" }}
               >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className={styles.cartImg}
-                />
+                <img src={ques} alt={item.name} className={styles.cartImg} />
                 <span>{item.name}</span>
               </span>
               <span
@@ -76,6 +73,7 @@ export default function Cart() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
+                  className={styles.amountBtn}
                   onClick={(e) => {
                     e.stopPropagation();
                     decreaseAmount(item.id);
@@ -83,8 +81,9 @@ export default function Cart() {
                 >
                   -
                 </button>
-                {item.amount}
+                <span className={styles.amount}>{item.amount}</span>
                 <button
+                  className={styles.amountBtn}
                   onClick={(e) => {
                     e.stopPropagation();
                     increaseAmount(item.id);
@@ -109,6 +108,7 @@ export default function Cart() {
                     e.stopPropagation();
                     removeFromCart(item.id);
                   }}
+                  className={styles.cartItemDelete}
                 >
                   刪除
                 </button>
