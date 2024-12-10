@@ -65,7 +65,11 @@ export default function Cart() {
                 onClick={() => handleNavigateToDetail(item)}
                 style={{ cursor: "pointer" }}
               >
-                <img src={ques} alt={item.name} className={styles.cartImg} />
+                <img
+                  src={`http://localhost:5000${item.image}`}
+                  alt={item.name}
+                  className={styles.cartImg}
+                />
                 <span>{item.name}</span>
               </span>
               <span
