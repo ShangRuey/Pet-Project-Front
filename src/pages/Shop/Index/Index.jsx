@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Index.module.css";
 import axios from "axios";
-import ques from "../../../assets/index/ques.jpg";
-import one from "../../../assets/index/1.png"; // 確保正確導入第二張圖片
+import ProductWall1 from "../../../assets/ProductWall/ProductWall1.jpg";
+import ProductWall2 from "../../../assets/ProductWall/ProductWall2.jpg";
 import PropTypes from "prop-types";
 import { useCart } from "../../../contexts/CartContext";
 
@@ -13,7 +13,7 @@ export default function Index({ filter, onImageClick }) {
   const [amounts, setAmounts] = useState({});
   const { addToCart } = useCart();
 
-  const images = [ques, one]; // 確保所有圖片都包含在這裡
+  const images = [ProductWall1, ProductWall2]; // 確保所有圖片都包含在這裡
 
   useEffect(() => {
     axios
@@ -91,10 +91,10 @@ export default function Index({ filter, onImageClick }) {
   };
 
   const handleImageClick = () => {
-    if (images[currentImageIndex] === ques) {
-      onImageClick("瑞威");
-    } else if (images[currentImageIndex] === one) {
-      onImageClick("玩具");
+    if (images[currentImageIndex] === ProductWall1) {
+      onImageClick("清燉");
+    } else if (images[currentImageIndex] === ProductWall2) {
+      onImageClick("功夫");
     }
   };
 
@@ -105,6 +105,7 @@ export default function Index({ filter, onImageClick }) {
       state: { item: product, type: "product", amount: amounts[product.id] },
     });
   };
+  console.log(products);
 
   return (
     <>
@@ -135,7 +136,7 @@ export default function Index({ filter, onImageClick }) {
           >
             <img
               className={styles.productImg}
-              src={ques}
+              src={`http://localhost:5000${product.image}`}
               alt={product.name}
               loading="lazy"
             />
