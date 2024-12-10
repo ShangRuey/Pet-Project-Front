@@ -102,6 +102,7 @@ export default function Detail() {
   const handleAddToCart = () => {
     addToCart({
       id: item.id,
+      image: item.image,
       name: item.name,
       price: item.price,
       amount: amount,
