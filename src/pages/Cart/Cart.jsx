@@ -25,7 +25,7 @@ export default function Cart() {
 
   const handleNavigateToDetail = (product) => {
     navigate(`/detail/${product.id}`, {
-      state: { product, amount: product.amount },
+      state: { item: product, amount: product.amount },
     });
   };
 
@@ -46,7 +46,7 @@ export default function Cart() {
       }
     }
   };
-
+  console.log(cartItems);
   return (
     <div className={styles.cartContainer}>
       <h2 className={styles.cartTitle}>購物車</h2>
