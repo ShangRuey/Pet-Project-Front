@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import styles from "./Detail.module.css";
-import ques from "../../assets/index/ques.jpg";
 import { useCart } from "../../contexts/CartContext";
 import { useUser } from "../../contexts/UserContext";
 
@@ -103,6 +102,7 @@ export default function Detail() {
   const handleAddToCart = () => {
     addToCart({
       id: item.id,
+      image: item.image,
       name: item.name,
       price: item.price,
       amount: amount,
@@ -144,7 +144,11 @@ export default function Detail() {
       <div className={styles.detailLeft}>
         <img
           className={styles.leftImg}
-          src={type === "adopt" ? item.album_file : ques}
+          src={
+            type === "adopt"
+              ? item.album_file
+              : `http://localhost:5000${item.image}`
+          }
           alt={item.name}
           loading="lazy"
         />
@@ -232,17 +236,12 @@ export default function Detail() {
             <div className={styles.rightItems}>
               <p className={styles.rightP}>
                 <span>商品敘述</span>
-                <span className={styles.rightSpan}>
-                  {/* 筆看幼尺春因馬亮汁几枝生幸因意：波住裏隻房住尼抱目早支長相「頭乞貓姐喜姊屋米才」林再共會奶，毛久地院信字它月邊？聲氣和她衣愛每司
-                  語豆國記洋沒朱，人好念穿辛又羊帽草出鴨有五禾公乙目歌浪皮 */}
-                  {item.description}
-                </span>
+                <span className={styles.rightSpan}>{item.description}</span>
               </p>
 
               <p className={styles.rightP}>
                 <span>商品價格</span>
                 <span className={styles.rightSpan}>${item.price}</span>
-                {/*item.description*/}
               </p>
               <div className={styles.rightCart}>
                 <button className={styles.cartButton} onClick={decreaseAmount}>

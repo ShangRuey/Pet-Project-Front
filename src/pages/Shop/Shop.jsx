@@ -14,18 +14,15 @@ export default function Shop() {
   const [activeItem, setActiveItem] = useState("首頁");
 
   const handleImageClick = (type) => {
-    if (type === "瑞威") {
+    if (type === "清燉") {
       handleItemClick(
-        "瑞威",
-        <Index
-          filter={{ brandId: "1", category: "飼料" }}
-          onImageClick={handleImageClick}
-        />
+        "清燉",
+        <Index filter={{ category: "清燉" }} onImageClick={handleImageClick} />
       );
-    } else if (type === "玩具") {
+    } else if (type === "功夫") {
       handleItemClick(
-        "玩具",
-        <Index filter={{ category: "玩具" }} onImageClick={handleImageClick} />
+        "功夫",
+        <Index filter={{ category: "功夫" }} onImageClick={handleImageClick} />
       );
     }
   };
@@ -65,43 +62,57 @@ export default function Shop() {
           className={styles.testAsideItem}
           onClick={() =>
             handleItemClick(
-              "飼料",
+              "清燉罐裝75g",
               <Index
-                filter={{ brandId: "1" }}
+                filter={{ brandId: "1", category: "清燉" }}
                 onImageClick={handleImageClick}
               />
             )
           }
         >
-          飼料
+          清燉75g
         </div>
         <div
           className={styles.testAsideItem}
           onClick={() =>
             handleItemClick(
-              "瑞威",
+              "清燉箱購",
               <Index
-                filter={{ brandId: "1", category: "飼料" }}
+                filter={{ brandId: "2", category: "清燉" }}
                 onImageClick={handleImageClick}
               />
             )
           }
         >
-          瑞威
+          清燉箱購
         </div>
         <div
           className={styles.testAsideItem}
           onClick={() =>
             handleItemClick(
-              "玩具",
+              "功夫罐裝130g",
               <Index
-                filter={{ category: "玩具" }}
+                filter={{ brandId: "1", category: "功夫" }}
                 onImageClick={handleImageClick}
               />
             )
           }
         >
-          玩具
+          罐裝功夫菜130g
+        </div>
+        <div
+          className={styles.testAsideItem}
+          onClick={() =>
+            handleItemClick(
+              "功夫箱購",
+              <Index
+                filter={{ brandId: "2", category: "功夫" }}
+                onImageClick={handleImageClick}
+              />
+            )
+          }
+        >
+          功夫菜箱購
         </div>
         <div
           className={styles.testAsideItem}
@@ -127,43 +138,56 @@ export default function Shop() {
           isActive={activeItem === "首頁"}
         />
         <AsideDt
-          label="飼料"
+          label="清燉罐裝75g"
           onClick={() =>
             handleItemClick(
-              "飼料",
+              "清燉罐裝75g",
               <Index
-                filter={{ brandId: "1" }}
+                filter={{ brandId: "1", category: "清燉" }}
                 onImageClick={handleImageClick}
               />
             )
           }
-          isActive={activeItem === "飼料"}
+          isActive={activeItem === "清燉罐裝75g"}
         />
         <AsideDd
-          label="瑞威"
+          label="清燉箱購"
           onClick={() =>
             handleItemClick(
-              "瑞威",
+              "清燉箱購",
               <Index
-                filter={{ brandId: "1", category: "飼料" }}
+                filter={{ brandId: "2", category: "清燉" }}
                 onImageClick={handleImageClick}
               />
             )
           }
-          isActive={activeItem === "瑞威"}
+          isActive={activeItem === "清燉箱購"}
         />
         <AsideDt
-          label="玩具"
+          label="功夫罐裝130g"
           onClick={() =>
             handleItemClick(
-              "玩具",
+              "功夫罐裝130g",
               <Index
-                filter={{ category: "玩具" }}
+                filter={{ brandId: "1", category: "功夫" }}
                 onImageClick={handleImageClick}
               />
             )
           }
-          isActive={activeItem === "玩具"}
+          isActive={activeItem === "功夫罐裝130g"}
+        />
+        <AsideDd
+          label="功夫箱購"
+          onClick={() =>
+            handleItemClick(
+              "功夫箱購",
+              <Index
+                filter={{ brandId: "2", category: "功夫" }}
+                onImageClick={handleImageClick}
+              />
+            )
+          }
+          isActive={activeItem === "功夫箱購"}
         />
         <AsideDt
           label="購物車"

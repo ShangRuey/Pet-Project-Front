@@ -25,7 +25,7 @@ export default function Cart() {
 
   const handleNavigateToDetail = (product) => {
     navigate(`/detail/${product.id}`, {
-      state: { product, amount: product.amount },
+      state: { item: product, amount: product.amount },
     });
   };
 
@@ -46,7 +46,7 @@ export default function Cart() {
       }
     }
   };
-
+  console.log(cartItems);
   return (
     <div className={styles.cartContainer}>
       <h2 className={styles.cartTitle}>購物車</h2>
@@ -65,7 +65,11 @@ export default function Cart() {
                 onClick={() => handleNavigateToDetail(item)}
                 style={{ cursor: "pointer" }}
               >
-                <img src={ques} alt={item.name} className={styles.cartImg} />
+                <img
+                  src={`http://localhost:5000${item.image}`}
+                  alt={item.name}
+                  className={styles.cartImg}
+                />
                 <span>{item.name}</span>
               </span>
               <span
