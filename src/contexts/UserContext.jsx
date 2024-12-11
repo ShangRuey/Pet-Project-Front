@@ -48,6 +48,8 @@ export const UserProvider = ({ children }) => {
   );
 };
 
+export { UserContext };
+
 UserProvider.propTypes = {
   children: PropTypes.any,
 };
