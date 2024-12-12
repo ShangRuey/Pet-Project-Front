@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
 
 const CartContext = createContext();
 
@@ -10,11 +11,10 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await fetch("http://localhost:5000/cart", {
-          credentials: "include",
+        const response = await axios.get("http://localhost:5000/cart", {
+          withCredentials: true,
         });
-        const data = await response.json();
-        setCartItems(data);
+        setCartItems(response.data);
       } catch (error) {
         console.error("Failed to fetch cart items:", error);
       }
@@ -58,14 +58,11 @@ export const CartProvider = ({ children }) => {
 
   const saveCartItems = async (items) => {
     try {
-      await fetch("http://localhost:5000/cart", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ items }),
-      });
+      await axios.post(
+        "http://localhost:5000/cart",
+        { items },
+        { withCredentials: true }
+      );
     } catch (error) {
       console.error("Failed to save cart items:", error);
     }
