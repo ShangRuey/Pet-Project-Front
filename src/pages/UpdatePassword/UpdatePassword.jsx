@@ -10,17 +10,18 @@ import styles from "./UpdatePassword.module.css";
 import Input from "../../components/Input/Input";
 import Message from "../../components/Message/Message";
 import Cookies from "js-cookie";
-import PropTypes from "prop-types";
+import { useAuth } from "../../contexts/AuthContext";
 
-export default function UpdatePassword({ setIsLoggedIn }) {
+export default function UpdatePassword() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [username, setUsername] = useState("");
-  const [isLoggedIn, setIsLoggedInState] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     const token = Cookies.get("token");
-    if (token) {
+    console.log(isLoggedIn);
+    if (isLoggedIn) {
       // 用戶已登入，從後端獲取用戶名
       axios
         .get("http://localhost:5000/member-data", {
@@ -30,16 +31,18 @@ export default function UpdatePassword({ setIsLoggedIn }) {
           withCredentials: true,
         })
         .then((response) => {
+          console.log(response);
+          console.log(123);
           if (response.status === 200) {
             setUsername(response.data.username);
-            setIsLoggedInState(true);
+            setIsLoggedIn(true);
           }
         })
         .catch((error) => {
           console.error("Error fetching member data:", error);
         });
     }
-  }, []);
+  }, [isLoggedIn, setIsLoggedIn]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -111,7 +114,7 @@ export default function UpdatePassword({ setIsLoggedIn }) {
           required
           value={username}
           onChange={handleUsernameChange} // 添加 onChange handler
-          readOnly={isLoggedIn} // 當用戶已登入時設置為只讀
+          disabled={isLoggedIn}
         />
         <Label label="手機"></Label>
         <Input
@@ -153,7 +156,3 @@ export default function UpdatePassword({ setIsLoggedIn }) {
     </MainFormContainer>
   );
 }
-
-UpdatePassword.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
-};

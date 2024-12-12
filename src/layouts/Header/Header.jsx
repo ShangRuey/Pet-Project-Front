@@ -1,12 +1,14 @@
-import PropTypes from "prop-types";
 import styles from "./Header.module.css";
 import logoImg from "../../assets/index/dog.png";
 import MenuItem from "./MenuItem/MenuItem.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext.jsx";
+import Cookies from "js-cookie";
 
-export default function Header({ isLoggedIn, setIsLoggedIn }) {
+export default function Header() {
   const navigate = useNavigate();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -18,6 +20,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         }
       );
       setIsLoggedIn(false);
+      Cookies.remove("token");
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);
@@ -75,8 +78,3 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  setIsLoggedIn: PropTypes.func.isRequired,
-};

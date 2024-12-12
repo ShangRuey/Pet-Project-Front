@@ -6,9 +6,10 @@ import AsideDd from "../../layouts/Aside/AsideDt/AsideDd/AsideDd.jsx";
 import ContentContainer from "../../layouts/ContentContainer/ContentContainer.jsx";
 import UpdateMember from "./UpdateMember/UpdateMember.jsx";
 import UpdatePassword from "../UpdatePassword/UpdatePassword.jsx";
-import PropTypes from "prop-types";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
-export default function Member({ setIsLoggedIn }) {
+export default function Member() {
+  const { setIsLoggedIn } = useAuth();
   const [activeItem, setActiveItem] = useState("修改會員資料");
   const [activeContent, setActiveContent] = useState(<UpdateMember />);
   const [isRwdAside, setIsRwdAside] = useState(false);
@@ -64,12 +65,7 @@ export default function Member({ setIsLoggedIn }) {
         />
         <AsideDt
           label="更改密碼"
-          onClick={() =>
-            handleItemClick(
-              "更改密碼",
-              <UpdatePassword setIsLoggedIn={setIsLoggedIn} />
-            )
-          } // 更改為 UpdatePassword 組件
+          onClick={() => handleItemClick("更改密碼", <UpdatePassword />)} // 更改為 UpdatePassword 組件
           isActive={activeItem === "更改密碼"}
         />
         <AsideDd
@@ -82,7 +78,3 @@ export default function Member({ setIsLoggedIn }) {
     </div>
   );
 }
-
-Member.propTypes = {
-  setIsLoggedIn: PropTypes.func.isRequired,
-};
