@@ -11,6 +11,8 @@ export default function Index({ filter, onImageClick }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [products, setProducts] = useState([]);
   const [amounts, setAmounts] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8; // 每頁顯示的產品數量
   const { addToCart } = useCart();
 
   const images = [ProductWall1, ProductWall2]; // 確保所有圖片都包含在這裡
@@ -105,7 +107,23 @@ export default function Index({ filter, onImageClick }) {
       state: { item: product, type: "product", amount: amounts[product.id] },
     });
   };
-  console.log(products);
+
+  // 計算當前頁需要顯示的產品
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = products.slice(startIndex, endIndex);
+
+  const nextPage = () => {
+    if (currentPage < Math.ceil(products.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <>
@@ -128,7 +146,7 @@ export default function Index({ filter, onImageClick }) {
         </div>
       )}
       <div className={styles.productWall}>
-        {products.map((product) => (
+        {currentProducts.map((product) => (
           <div
             key={product.id}
             className={styles.productItem}
@@ -185,6 +203,25 @@ export default function Index({ filter, onImageClick }) {
             </button>
           </div>
         ))}
+      </div>
+      <div className={styles.pagination}>
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          className={styles.pageButton}
+        >
+          上一頁
+        </button>
+        <span className={styles.pageIndicator}>{`${currentPage}/${Math.ceil(
+          products.length / itemsPerPage
+        )}`}</span>
+        <button
+          onClick={nextPage}
+          disabled={currentPage === Math.ceil(products.length / itemsPerPage)}
+          className={styles.pageButton}
+        >
+          下一頁
+        </button>
       </div>
     </>
   );
