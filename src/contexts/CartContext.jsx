@@ -7,14 +7,16 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/cart`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `https://pet-project-back-dt26.onrender.com/cart`,
+          {
+            withCredentials: true,
+          }
+        );
         setCartItems(response.data);
       } catch (error) {
         console.error("Failed to fetch cart items:", error);
@@ -59,7 +61,11 @@ export const CartProvider = ({ children }) => {
 
   const saveCartItems = async (items) => {
     try {
-      await axios.post(`${apiUrl}/cart`, { items }, { withCredentials: true });
+      await axios.post(
+        `https://pet-project-back-dt26.onrender.com/cart`,
+        { items },
+        { withCredentials: true }
+      );
     } catch (error) {
       console.error("Failed to save cart items:", error);
     }

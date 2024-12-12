@@ -3,7 +3,6 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 const UserContext = createContext();
-const apiUrl = process.env.REACT_APP_API_URL;
 
 export const useUser = () => useContext(UserContext);
 
@@ -13,9 +12,12 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/member-data`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `https://pet-project-back-dt26.onrender.com/member-data`,
+        {
+          withCredentials: true,
+        }
+      );
       setUser(response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -31,7 +33,11 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post(`${apiUrl}/logout`, {}, { withCredentials: true });
+      await axios.post(
+        `https://pet-project-back-dt26.onrender.com/logout`,
+        {},
+        { withCredentials: true }
+      );
       setUser(null);
     } catch (error) {
       console.error("Error logging out:", error);

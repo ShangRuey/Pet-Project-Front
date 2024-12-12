@@ -14,7 +14,6 @@ export default function Index({ filter, onImageClick }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8; // 每頁顯示的產品數量
   const { addToCart } = useCart();
-  const apiUrl = process.env.REACT_APP_API_URL;
   const images = [ProductWall1, ProductWall2]; // 確保所有圖片都包含在這裡
 
   useEffect(() => {

@@ -5,9 +5,7 @@ import styles from "./CommunityChat.module.css";
 import ques from "../../../assets/index/ques.jpg";
 import PropTypes from "prop-types";
 
-const apiUrl = process.env.REACT_APP_API_URL;
-
-const SOCKET_URL = apiUrl || "http://localhost:5000";
+const SOCKET_URL = "https://pet-project-back-dt26.onrender.com";
 
 export default function CommunityChat({ user }) {
   const [messages, setMessages] = useState([]);
@@ -18,17 +16,20 @@ export default function CommunityChat({ user }) {
 
   useEffect(() => {
     // 獲取歷史訊息
-    axios.get(`${apiUrl}/messages`).then((response) => {
-      // 按時間順序排序訊息（最新訊息在最上，最早訊息在最下）
-      const sortedMessages = response.data.sort(
-        (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-      );
-      setMessages(sortedMessages);
-      // 滾動到底部
-      if (chatContentRef.current) {
-        chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
-      }
-    });
+    axios
+      .get(`https://pet-project-back-dt26.onrender.com/messages`)
+      .then((response) => {
+        // 按時間順序排序訊息（最新訊息在最上，最早訊息在最下）
+        const sortedMessages = response.data.sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
+        setMessages(sortedMessages);
+        // 滾動到底部
+        if (chatContentRef.current) {
+          chatContentRef.current.scrollTop =
+            chatContentRef.current.scrollHeight;
+        }
+      });
 
     // 建立 socket.io 連接
     socketRef.current = io(SOCKET_URL);

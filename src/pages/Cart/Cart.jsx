@@ -29,13 +29,11 @@ export default function Cart() {
     });
   };
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-
   const handleCheckout = async () => {
     if (window.confirm("你確定要結帳嗎？")) {
       try {
         const response = await axios.post(
-          `${apiUrl}/checkout`,
+          `https://pet-project-back-dt26.onrender.com/checkout`,
           { cartItems },
           { withCredentials: true }
         );
@@ -68,7 +66,7 @@ export default function Cart() {
                 style={{ cursor: "pointer" }}
               >
                 <img
-                  src={`${apiUrl}${item.image}`}
+                  src={`https://pet-project-back-dt26.onrender.com${item.image}`}
                   alt={item.name}
                   className={styles.cartImg}
                 />

@@ -19,7 +19,6 @@ export default function Login() {
   const { setIsLoggedIn } = useAuth();
   const { fetchUserData } = useUser();
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,12 +30,16 @@ export default function Login() {
     };
 
     try {
-      const response = await axios.post(`${apiUrl}/login`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `https://pet-project-back-dt26.onrender.com/login`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (response.status === 200) {
         setIsLoggedIn(true);

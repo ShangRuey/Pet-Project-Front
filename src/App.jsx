@@ -40,14 +40,16 @@ function App() {
 function MainApp() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   const [loading, setLoading] = useState(true);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${apiUrl}/check-auth`, {
-          withCredentials: true, // 確保 cookie 包含在請求中
-        });
+        const response = await axios.get(
+          `https://pet-project-back-dt26.onrender.com/check-auth`,
+          {
+            withCredentials: true, // 確保 cookie 包含在請求中
+          }
+        );
 
         if (response.status === 200) {
           setIsLoggedIn(true);

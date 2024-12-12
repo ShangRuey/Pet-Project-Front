@@ -86,7 +86,6 @@ export default function Detail() {
   const [adopted, setAdopted] = useState(false); // 用來追蹤是否已申請認養
   const { addToCart } = useCart();
   const { user } = useUser(); // 使用 useUser 來獲取當前用戶信息
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   if (!item) {
     return <div>詳細資料未找到</div>;
@@ -121,7 +120,7 @@ export default function Detail() {
     if (confirmAdopt) {
       try {
         const response = await axios.post(
-          `${apiUrl}/adopt`,
+          `https://pet-project-back-dt26.onrender.com/adopt`,
           {
             userId: user.id,
             animalId: item.animal_id,
@@ -145,7 +144,11 @@ export default function Detail() {
       <div className={styles.detailLeft}>
         <img
           className={styles.leftImg}
-          src={type === "adopt" ? item.album_file : `${apiUrl}${item.image}`}
+          src={
+            type === "adopt"
+              ? item.album_file
+              : `https://pet-project-back-dt26.onrender.com${item.image}`
+          }
           alt={item.name}
           loading="lazy"
         />

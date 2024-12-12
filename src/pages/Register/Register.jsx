@@ -13,7 +13,6 @@ import axios from "axios";
 export default function Register() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -29,11 +28,15 @@ export default function Register() {
     };
 
     try {
-      const response = await axios.post(`${apiUrl}/register`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        `https://pet-project-back-dt26.onrender.com/register`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.status === 201) {
         setMessage("註冊成功，請登入");

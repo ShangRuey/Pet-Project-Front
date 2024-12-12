@@ -19,18 +19,20 @@ export default function UpdateMember() {
   });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchMemberData = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await axios.get(`${apiUrl}}/member-data`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `https://pet-project-back-dt26.onrender.com/member-data`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        );
 
         if (response.status === 200) {
           console.log(response.data);
@@ -65,7 +67,7 @@ export default function UpdateMember() {
     try {
       const token = Cookies.get("token");
       const response = await axios.put(
-        `${apiUrl}/update-member`,
+        `https://pet-project-back-dt26.onrender.com/update-member`,
         memberData, // 使用 'fullname' 作為屬性
         {
           headers: {

@@ -34,12 +34,11 @@ const Map = () => {
   const [tempMarker, setTempMarker] = useState(null);
   const [address, setAddress] = useState("");
   const mapRef = useRef(); // 新增 useRef 來獲取地圖實例
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // Fetch markers from backend
     axios
-      .get(`${apiUrl}/markers`)
+      .get(`https://pet-project-back-dt26.onrender.com/markers`)
       .then((response) => setMarkers(response.data))
       .catch((error) => console.error("Error fetching markers:", error));
   }, []);
@@ -49,7 +48,7 @@ const Map = () => {
     if (selectedMarker && user) {
       axios
         .post(
-          `${apiUrl}/markers/${selectedMarker.id}/comments`,
+          `https://pet-project-back-dt26.onrender.com/markers/${selectedMarker.id}/comments`,
           { comment: ` ${newComment}` }, // 附加用戶全名
           { withCredentials: true } // 確保包含 Cookies
         )
@@ -73,7 +72,7 @@ const Map = () => {
       comments: user ? [`${user.fullname}: ${newComment}`] : [newComment], // 附加用戶全名
     };
     axios
-      .post(`${apiUrl}/markers`, newMarker, {
+      .post(`https://pet-project-back-dt26.onrender.com/markers`, newMarker, {
         withCredentials: true,
       }) // 確保包含 Cookies
       .then((response) => {
@@ -87,7 +86,7 @@ const Map = () => {
 
   const handleDeleteMarker = (markerId) => {
     axios
-      .delete(`${apiUrl}/markers/${markerId}`)
+      .delete(`https://pet-project-back-dt26.onrender.com/markers/${markerId}`)
       .then(() => {
         setMarkers(markers.filter((marker) => marker.id !== markerId));
       })
