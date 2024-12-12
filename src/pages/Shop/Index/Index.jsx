@@ -154,7 +154,7 @@ export default function Index({ filter, onImageClick }) {
           >
             <img
               className={styles.productImg}
-              src={`https://pet-project-back-dt26.onrender.com/${product.image}`}
+              src={`https://pet-project-back-dt26.onrender.com${product.image}`}
               alt={product.name}
               loading="lazy"
             />
