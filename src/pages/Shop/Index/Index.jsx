@@ -19,7 +19,7 @@ export default function Index({ filter, onImageClick }) {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/products`)
+      .get(`https://pet-project-back-dt26.onrender.com/products`)
       .then((response) => {
         const filteredProducts = response.data.filter(
           (product) => product.stock > 0
