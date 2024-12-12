@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Cookies from "js-cookie";
 
 const UserContext = createContext();
 
@@ -12,11 +13,10 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
+      const token = Cookies.get("token");
       const response = await axios.get(
         `https://pet-project-back-dt26.onrender.com/member-data`,
-        {
-          withCredentials: true,
-        }
+        { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       );
       setUser(response.data);
     } catch (error) {
