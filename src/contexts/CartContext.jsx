@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const CartContext = createContext();
 
@@ -8,7 +7,6 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const token = Cookies.get("token");
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -16,7 +14,6 @@ export const CartProvider = ({ children }) => {
         const response = await axios.get(
           `https://pet-project-back-dt26.onrender.com/cart`,
           {
-            headers: { Authorization: `Bearer ${token}` },
             withCredentials: true,
           }
         );
