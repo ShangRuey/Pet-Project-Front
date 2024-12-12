@@ -9,11 +9,12 @@ import Cookies from "js-cookie";
 export default function Header() {
   const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/logout",
+        `${apiUrl}/logout`,
         {},
         {
           withCredentials: true, // 確保 cookie 包含在請求中

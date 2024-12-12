@@ -19,12 +19,13 @@ export default function UpdateMember() {
   });
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchMemberData = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await axios.get("http://localhost:5000/member-data", {
+        const response = await axios.get(`${apiUrl}}/member-data`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -64,7 +65,7 @@ export default function UpdateMember() {
     try {
       const token = Cookies.get("token");
       const response = await axios.put(
-        "http://localhost:5000/update-member",
+        `${apiUrl}/update-member`,
         memberData, // 使用 'fullname' 作為屬性
         {
           headers: {

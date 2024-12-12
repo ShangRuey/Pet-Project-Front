@@ -5,7 +5,9 @@ import styles from "./CommunityChat.module.css";
 import ques from "../../../assets/index/ques.jpg";
 import PropTypes from "prop-types";
 
-const SOCKET_URL = "http://localhost:5000";
+const apiUrl = process.env.REACT_APP_API_URL;
+
+const SOCKET_URL = apiUrl || "http://localhost:5000";
 
 export default function CommunityChat({ user }) {
   const [messages, setMessages] = useState([]);
@@ -16,7 +18,7 @@ export default function CommunityChat({ user }) {
 
   useEffect(() => {
     // 獲取歷史訊息
-    axios.get("http://localhost:5000/messages").then((response) => {
+    axios.get(`${apiUrl}/messages`).then((response) => {
       // 按時間順序排序訊息（最新訊息在最上，最早訊息在最下）
       const sortedMessages = response.data.sort(
         (a, b) => new Date(b.timestamp) - new Date(a.timestamp)

@@ -3,6 +3,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 const UserContext = createContext();
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const useUser = () => useContext(UserContext);
 
@@ -12,7 +13,7 @@ export const UserProvider = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/member-data", {
+      const response = await axios.get(`${apiUrl}/member-data`, {
         withCredentials: true,
       });
       setUser(response.data);
@@ -30,11 +31,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/logout",
-        {},
-        { withCredentials: true }
-      );
+      await axios.post(`${apiUrl}/logout`, {}, { withCredentials: true });
       setUser(null);
     } catch (error) {
       console.error("Error logging out:", error);

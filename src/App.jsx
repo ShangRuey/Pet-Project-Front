@@ -40,11 +40,12 @@ function App() {
 function MainApp() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
   const [loading, setLoading] = useState(true);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/check-auth", {
+        const response = await axios.get(`${apiUrl}/check-auth`, {
           withCredentials: true, // 確保 cookie 包含在請求中
         });
 

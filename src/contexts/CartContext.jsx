@@ -7,11 +7,12 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/cart", {
+        const response = await axios.get(`${apiUrl}/cart`, {
           withCredentials: true,
         });
         setCartItems(response.data);
@@ -58,11 +59,7 @@ export const CartProvider = ({ children }) => {
 
   const saveCartItems = async (items) => {
     try {
-      await axios.post(
-        "http://localhost:5000/cart",
-        { items },
-        { withCredentials: true }
-      );
+      await axios.post(`${apiUrl}/cart`, { items }, { withCredentials: true });
     } catch (error) {
       console.error("Failed to save cart items:", error);
     }

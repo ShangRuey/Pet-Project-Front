@@ -17,6 +17,7 @@ export default function UpdatePassword() {
   const [message, setMessage] = useState("");
   const [username, setUsername] = useState("");
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -24,7 +25,7 @@ export default function UpdatePassword() {
     if (isLoggedIn) {
       // 用戶已登入，從後端獲取用戶名
       axios
-        .get("http://localhost:5000/member-data", {
+        .get(`${apiUrl}/member-data`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -60,7 +61,7 @@ export default function UpdatePassword() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/update-password",
+        `${apiUrl}/update-password`,
         {
           username,
           phone,

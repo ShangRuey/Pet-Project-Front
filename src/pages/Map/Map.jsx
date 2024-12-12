@@ -34,11 +34,12 @@ const Map = () => {
   const [tempMarker, setTempMarker] = useState(null);
   const [address, setAddress] = useState("");
   const mapRef = useRef(); // 新增 useRef 來獲取地圖實例
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // Fetch markers from backend
     axios
-      .get("http://localhost:5000/markers")
+      .get(`${apiUrl}/markers`)
       .then((response) => setMarkers(response.data))
       .catch((error) => console.error("Error fetching markers:", error));
   }, []);
@@ -48,7 +49,7 @@ const Map = () => {
     if (selectedMarker && user) {
       axios
         .post(
-          `http://localhost:5000/markers/${selectedMarker.id}/comments`,
+          `${apiUrl}/markers/${selectedMarker.id}/comments`,
           { comment: ` ${newComment}` }, // 附加用戶全名
           { withCredentials: true } // 確保包含 Cookies
         )
@@ -72,7 +73,7 @@ const Map = () => {
       comments: user ? [`${user.fullname}: ${newComment}`] : [newComment], // 附加用戶全名
     };
     axios
-      .post("http://localhost:5000/markers", newMarker, {
+      .post(`${apiUrl}/markers`, newMarker, {
         withCredentials: true,
       }) // 確保包含 Cookies
       .then((response) => {
@@ -86,7 +87,7 @@ const Map = () => {
 
   const handleDeleteMarker = (markerId) => {
     axios
-      .delete(`http://localhost:5000/markers/${markerId}`)
+      .delete(`${apiUrl}/markers/${markerId}`)
       .then(() => {
         setMarkers(markers.filter((marker) => marker.id !== markerId));
       })
