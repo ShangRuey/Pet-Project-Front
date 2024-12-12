@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import PropTypes from "prop-types";
 import Cookies from "js-cookie";
 import Form from "../Form/Form.jsx";
 import Title from "../../components/Title/Title.jsx";
@@ -13,9 +12,11 @@ import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import MainFormContainer from "../../components/MainFormContainer/MainFormContainer.jsx";
 import { useUser } from "../../contexts/UserContext";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
-export default function Login({ setIsLoggedIn }) {
+export default function Login() {
   const [message, setMessage] = useState("");
+  const { setIsLoggedIn } = useAuth();
   const { fetchUserData } = useUser();
   const navigate = useNavigate();
 
@@ -95,7 +96,3 @@ export default function Login({ setIsLoggedIn }) {
     </MainFormContainer>
   );
 }
-
-Login.propTypes = {
-  setIsLoggedIn: PropTypes.func,
-};
