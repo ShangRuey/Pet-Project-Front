@@ -1,4 +1,4 @@
-# Pet-Project
+# Pet-Project(使用Vite + React)
 ### 安裝專案Dependencies
 ```
 npm install
